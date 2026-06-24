@@ -1,0 +1,1 @@
+npx playwright test tests/auth.spec.js --debug --headed
