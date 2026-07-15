@@ -62,25 +62,26 @@ AI reduces historical web automation pain points by augmenting robustness and au
 
 ## 2. Scope of Testing (End-to-End User Journeys)
 
-### Journey 1: The Core Purchasing Lifecycle (Happy Path)
+### Journey 1: Customer Registers, Logs In, and Browses Products (Happy Path)
 
-**Objective:** Validate the complete customer purchase flow from product discovery through successful checkout with a valid discount.
+**Objective:** Verify that a new user can successfully register, log in, and explore the product catalog end-to-end, and that all required form and navigation standards are in place.
 
-1. Search for a product by keyword and confirm the product list updates correctly to locate a target item `[FR-05]`.
-2. Open product details, verify required information and quantity constraints, then add the item to the cart `[FR-06]`.
-3. In the cart, adjust quantity, verify line totals and the "Tong cong" label, then proceed to checkout `[FR-07]`.
-4. Attempt checkout while unauthenticated to confirm login is required, then authenticate with a valid user account `[FR-08][FR-02]`.
-5. Apply a coupon that satisfies all five conditions and verify discount calculation and final amount at checkout `[FR-09][FR-08]`.
-6. Submit the order successfully and confirm the cart is cleared after completion `[FR-08]`.
+1. A new user navigates to the registration page and fills in all required fields (name, email, strong password, confirm password) `[FR-01]`.
+2. System accepts the form and redirects to the login page.
+3. User logs in with their new credentials `[FR-02]`.
+4. System authenticates and redirects to the home page showing a product grid.
+5. User searches for a product by keyword `[FR-05]`.
+6. System returns matching results; user verifies the displayed list.
 
-### Journey 2: Security Boundaries & Account Recovery (Negative Path)
+### Journey 2: Customer Triggers Account Lockout with Failed Logins (Negative Path)
 
-**Objective:** Validate account lockout, password recovery, and profile updates under security constraints.
+**Objective:** Verify that after exactly 3 consecutive failed login attempts the account is locked for 30 seconds, an appropriate error message is displayed, and login succeeds again after the lock expires.
 
-1. Perform three consecutive failed logins to trigger the 30-second lockout and verify the error response does not over-disclose details `[FR-02]`.
-2. Start the two-step Forgot Password process, request the OTP for a registered email, and verify the step indicator is shown `[FR-03]`.
-3. Reset the password with a compliant strong password and matching confirmation, then verify rejection for invalid or mismatched input `[FR-03][FR-01]`.
-4. Log in with the new password and update profile fields while confirming email remains immutable and role cannot be altered `[FR-02][FR-04]`.
+1. User submits incorrect password once; system shows a login failure message (attempt 1).
+2. User submits incorrect password a second time; system shows a failure message (attempt 2).
+3. User submits incorrect password a third time; system locks the account and shows a lockout message (not a generic "wrong password" message) `[FR-02]`.
+4. User immediately tries to log in with the correct password → rejected (account still locked).
+5. After 30 seconds, user logs in with correct credentials → succeeds.
 
 ### Journey 3: The Admin Order State Machine (Admin Path)
 
@@ -88,11 +89,11 @@ AI reduces historical web automation pain points by augmenting robustness and au
 
 1. Log into the Admin portal with an admin account and confirm access is gated by role and token `[FR-12]`.
 2. Optionally import products via CSV and verify atomic rollback if any row fails validation `[FR-16]`.
-3. Locate the order created in Journey 1 and transition it from pending to confirmed `[FR-10][FR-18]`.
+3. Confirm one order was placed by customer, transition it from pending to confirmed `[FR-10][FR-18]`.
 4. Transition the order from confirmed to shipping and then to delivered, verifying each state change is accepted `[FR-10][FR-18]`.
 5. Attempt to cancel a delivered order and confirm the action is rejected because delivered is a final state `[FR-10][FR-18]`.
 
-### Journey 4: Admin Catalog and Coupon Lifecycle to Customer Verification
+<!-- ### Journey 4: Admin Catalog and Coupon Lifecycle to Customer Verification
 
 **Objective:** Validate that admin-managed catalog and coupon data propagate end-to-end to customer purchase flows.
 
@@ -100,7 +101,7 @@ AI reduces historical web automation pain points by augmenting robustness and au
 2. As admin, create a coupon with valid fields and constraints for later use `[FR-17]`.
 3. As a customer, search for the new product, open details, add it to the cart, and proceed to checkout `[FR-05][FR-06][FR-07]`.
 4. Apply the newly created coupon and verify the discount and final amount reflect the configured rules `[FR-09][FR-08]`.
-5. Complete checkout to confirm end-to-end data flow from admin configuration to user purchase `[FR-08]`.
+5. Complete checkout to confirm end-to-end data flow from admin configuration to user purchase `[FR-08]`. -->
 
 ## 3. Comprehensive Tool Assessment
 
