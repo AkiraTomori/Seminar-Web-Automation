@@ -21,3 +21,7 @@
 - npx playwright test example.spec.js --debug: Run the tests in debug mode for a specific file.
 
 - npx playwright test example.spec.js:21 --debug: debug starting from a specific line in a specific file.
+
+- npx playwright codegen https://example.com: Generate a test script for a specific URL.
+
+- npx playwright code --target=playwright-test -o tests/<>.spec.js https://example.com: Generate a test script for a specific URL and save it to a specific file.

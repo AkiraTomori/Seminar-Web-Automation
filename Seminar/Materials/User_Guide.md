@@ -10,7 +10,6 @@
 **Chủ đề:** T02 - Web Automation Testing \
 **Software Under Test (SUT):** [EShop](https://github.com/ttbhanh/eshop-sut/tree/main) (React + Node.js/Express) \
 **Official Repository:** [Seminar](https://github.com/phatnguyen975/eshop-sut/tree/main), nhánh Web-automation
-
 **Thành viên nhóm:**
 
 - 23127378 - Nguyễn Gia Huy
@@ -751,12 +750,8 @@ Trước khi bắt đầu sử dụng Mabl, hãy đảm bảo bạn đã chuẩn
 ### 6.2 Bước 1 — Đăng ký tài khoản Mabl
 
 1. Truy cập trang đăng ký tại: **https://app.mabl.com/signup**
-2. Điền thông tin:
-   - **Full Name:** Tên thành viên nhóm.
-   - **Work Email:** Email cá nhân hoặc email trường (ví dụ: `23127378@student.hcmus.edu.vn`).
-   - **Password:** Đặt mật khẩu đủ mạnh.
-3. Nhấn **Sign Up** → Xác minh email qua hộp thư đến.
-4. Sau khi xác minh, bạn sẽ được chuyển đến trang **tải Mabl Desktop App** — đây là bước bắt buộc tiếp theo.
+2. Chọn phương thức đăng ký phù hợp
+3. Sau khi xác minh, bạn sẽ được chuyển đến trang **tải Mabl Desktop App** — đây là bước bắt buộc tiếp theo.
 
 > **Lưu ý:** Mabl cung cấp bản **Free Trial 14 ngày** với đầy đủ tính năng. Đủ cho mục đích học tập và thực hành trong học phần.
 
@@ -786,12 +781,7 @@ Sau khi đăng ký thành công, Mabl sẽ yêu cầu bạn **tải về ứng d
 
 **Yêu cầu:** macOS với chip Intel hoặc Apple Silicon (M1/M2/M3/M4).
 
-1. Tại trang tải, chọn đúng phiên bản phù hợp với chip máy:
-   - **Apple Silicon (M1/M2/M3/M4):** Chọn bản `mabl for Apple M1`.
-   - **Intel:** Chọn bản `mabl for Intel`.
-
-   > **Mẹo kiểm tra loại chip:** Nhấn biểu tượng Apple () → **About This Mac** → Dòng **Chip** hoặc **Processor** sẽ hiển thị thông tin.
-
+1. Tại trang tải, chọn đúng phiên bản phù hợp với chip máy
 2. File cài đặt (`.dmg`) sẽ được tải về.
 3. **Mở file `.dmg`** → Cửa sổ cài đặt hiện ra.
 4. **Kéo biểu tượng Mabl** vào thư mục **Applications** (kéo-thả).
@@ -882,15 +872,15 @@ mabl-app
 Sau khi cài đặt và khởi chạy Mabl Desktop App trên bất kỳ nền tảng nào:
 
 1. **Màn hình đăng nhập** hiện ra → Nhập email và password đã đăng ký.
-2. Sau khi đăng nhập thành công, giao diện chính của Mabl Desktop App sẽ hiển thị với:
-   - **Thanh điều hướng bên trái** (sidebar): Tests, Plans, Environments, v.v.
-   - **Nút "New Test"** nổi bật ở góc trên.
-   - **Workspace name** hiển thị ở đầu trang.
-3. Thử nhấn **"New Test"** → Nếu hiển thị form tạo test mới với các trường Test Name, Application, Starting URL → ✅ cài đặt thành công.
+2. Sau khi đăng nhập thành công, giao diện chính của Mabl Desktop App sẽ hiển thị 
 
 > **Cập nhật ứng dụng:** Mabl Desktop App tự thông báo khi có bản cập nhật mới qua banner trong ứng dụng. Bạn cũng có thể kiểm tra thủ công: **Help** → **Check for updates**. Trên Linux (Snap), ứng dụng được cập nhật tự động trong nền.
 
 ### 6.4 Bước 3 — Tạo Workspace và Application
+> ***Lưu ý:*** Có nhiều cách để kết nối `Mabl` với SUT
+> - Bạn có thể dừng các dịch vụ deploy web và lấy đường dẫn web để kết nối
+> - Bạn có thể dùng `ngrok` để tọ public link
+> - Bạn có thể tạo môi trường riêng để test (Đây là cách mình trình bày)
 
 1. **Tạo Workspace:**
    - Đặt tên workspace: `EShop-Testing` (hoặc tên tùy chọn).
@@ -1540,3 +1530,4 @@ Phần này cung cấp hướng dẫn khắc phục các lỗi thường gặp k
 - [Mabl Documentation](https://help.mabl.com)
 - [Mabl GitHub Actions](https://github.com/mablhq/github-run-tests-action)
 - [Mabl CLI Documentation](https://help.mabl.com/docs/mabl-cli)
+
